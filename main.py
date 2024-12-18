@@ -1,4 +1,5 @@
-# Daftar rute dengan format: (asal, tujuan, biaya)
+import time
+
 routes = [
     ("A", "B", 10),
     ("A", "C", 15),
@@ -9,7 +10,6 @@ routes = [
 ]
 
 def merge_sort_routes(routes):
-    """Mengurutkan rute berdasarkan biaya menggunakan Merge Sort."""
     if len(routes) <= 1:
         return routes
 
@@ -20,7 +20,6 @@ def merge_sort_routes(routes):
     return merge(left, right)
 
 def merge(left, right):
-    """Menggabungkan dua daftar rute yang terurut berdasarkan biaya."""
     result = []
     i = j = 0
 
@@ -37,7 +36,6 @@ def merge(left, right):
     return result
 
 def greedy_route_selection(routes):
-    """Pendekatan Greedy untuk memilih rute dengan biaya minimum."""
     # Urutkan rute menggunakan Merge Sort
     sorted_routes = merge_sort_routes(routes)
     selected_routes = []
@@ -52,11 +50,14 @@ def greedy_route_selection(routes):
 
     return selected_routes
 
-# Menjalankan program
 print("Rute awal:", routes)
 
-# Pendekatan Greedy dengan Merge Sort
+start_time = time.perf_counter()
 greedy_result = greedy_route_selection(routes)
+end_time = time.perf_counter()
+
 print("\nHasil Greedy dengan Merge Sort:")
 for r in greedy_result:
     print(f"{r[0]} -> {r[1]} dengan biaya {r[2]}")
+
+print(f"\nWaktu eksekusi: {end_time - start_time:.6f} detik")
